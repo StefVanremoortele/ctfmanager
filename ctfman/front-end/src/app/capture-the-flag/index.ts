@@ -1,0 +1,1 @@
+export * from "./capture-the-flag.component"

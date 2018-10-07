@@ -1,0 +1,45 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit ctf</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+
+        <label for="ctf-name">CTF name</label>
+        <div>
+          <input id="ctf-name" type="text">
+        </div>
+        <label for="ctf-type">type</label>
+        <div>
+          <input id="ctf-type" type="text">
+        </div>
+        <label for="startDate">Start date</label>
+        <div class="input-group">
+          <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="sdp.toggle()" type="button"></button>
+          </div>
+        </div>
+        <label for="endDate">End date</label>
+        <div class="input-group">
+          <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="edp" ngbDatepicker #edp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="edp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+ 
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit</button>
+
+
+<pre>{{closeResult}}</pre>

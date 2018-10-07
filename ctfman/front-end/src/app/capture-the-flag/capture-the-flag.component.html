@@ -1,0 +1,28 @@
+<h4>CTF's</h4>
+
+
+
+
+<div *ngIf="_ctfService.ctf_list; else emptyCtfList">
+  <div class="col-sm-12">
+    <div *ngFor="let ctf of ctf_list">
+      <div class="row mb-3">
+        <p>test</p>
+        <div class="col-md-2 mb-1">{{ ctf.id }}</div>
+        <div class="col-md-2 mb-1">{{ ctf.title }}</div>
+        <div class="col-md-2 mb-1">Start: {{ ctf.startDate }}</div>
+        <app-edit-ctf></app-edit-ctf>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCtfList>
+  <div class="col-sm-12">
+    <div>
+      <p>No CTFs found</p>
+    </div>
+  </div>
+</ng-template>
+
+<app-create-ctf></app-create-ctf>
