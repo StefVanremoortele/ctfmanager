@@ -1,3 +1,20 @@
-<p>
-  challenges works!
-</p>
+<h4>Challenges</h4>
+
+
+
+<div *ngIf="challenges_list; else noChallenges">
+  <div class="col-sm-12">
+    <div *ngFor="let challenge of challenges_list">
+      <p>{{challenge.id}}</p>
+      <p>{{challenge.title}}</p>
+      <p>{{challenge.type}}</p>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noChallenges>
+  <div class="col-sm-12">
+    <p>No Challenges found</p>
+  </div>
+</ng-template>

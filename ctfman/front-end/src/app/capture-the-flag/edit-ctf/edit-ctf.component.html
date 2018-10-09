@@ -8,29 +8,28 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-
-        <label for="ctf-name">CTF name</label>
+        <label for="hackathon-name">Hackathon name</label>
         <div>
-          <input id="ctf-name" type="text">
-        </div>
-        <label for="ctf-type">type</label>
-        <div>
-          <input id="ctf-type" type="text">
+          <input id="hackathon-name" type="text" [value]="hackathon?.name" (input)="updateValue($event)">
         </div>
         <label for="startDate">Start date</label>
         <div class="input-group">
-          <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
+          <input id="startDate" class="form-control" [(ngModel)]="startDate" value="{{ hackathon?.startDate }}" (ngModelChange)="updateStartDate(startDate)" placeholder="yyyy-mm-dd" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="sdp.toggle()" type="button"></button>
-          </div>
+          </div> 
         </div>
         <label for="endDate">End date</label>
         <div class="input-group">
-          <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="edp" ngbDatepicker #edp="ngbDatepicker">
-          <div class="input-group-append">
+          <input id="endDate" class="form-control" [(ngModel)]="endDate" value="{{ hackathon?.endDate }}"  (ngModelChange)="updateEndDate(endDate)" placeholder="yyyy-mm-dd" name="edp" ngbDatepicker #edp="ngbDatepicker">
+          <div class="input-group-append">>
             <button class="btn btn-outline-secondary calendar" (click)="edp.toggle()" type="button"></button>
           </div>
         </div>
+      </div>
+      <label for="hackathon-rating">Rating</label>
+      <div>
+        <input id="hackathon-rating" type="text" [value]="hackathon?.rating" (input)="updateValue($event)">
       </div>
     </form>
   </div>

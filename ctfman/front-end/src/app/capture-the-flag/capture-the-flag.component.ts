@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CtfService } from './ctf.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { ApiService } from '../shared';
 
 @Component({
   selector: 'app-capture-the-flag',
@@ -8,29 +9,31 @@ import { throwError } from 'rxjs/internal/observable/throwError';
   styleUrls: ['./capture-the-flag.component.scss']
 })
 export class CaptureTheFlagComponent implements OnInit {
-  public ctf_list: any = [];
+  public hackathon_list: any = [];
 
-  constructor(private _ctfService: CtfService) {
+  constructor(private _ctfService: CtfService, private _apiService: ApiService) {
 
   }
 
   ngOnInit() {
-    this.getCtfs();
+    this.loadHackathons();
   }
 
-  getCtfs() {
-    this._ctfService.list().subscribe(
+  loadHackathons() {
+    this._apiService.getAllHackathons().subscribe(
       data => {
-        this.ctf_list = data;
+        this.hackathon_list = data;
       },
       err => console.error(err),
-      () => console.log('done loading CTFs')
+      () => console.log('done loading hackathons')
     );
   }
+  
 
-  createCtf() {
-    // route to create ctf  page  ||  popup model for creation
-    
+  modal_saved_action(save: boolean) {
+    if (save) 
+      this.loadHackathons();
   }
   
+
 }

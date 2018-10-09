@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 // import { routing } from './app-routing.module';
 
@@ -28,7 +28,7 @@ import { EditCtfComponent } from './capture-the-flag/edit-ctf/edit-ctf.component
     EditCtfComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule],
+    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule],
   providers: [BlogPostService, UserService, CtfService],
   bootstrap: [AppComponent]
 })

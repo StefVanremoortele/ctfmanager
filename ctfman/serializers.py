@@ -36,7 +36,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class HackathonSerializer(serializers.ModelSerializer):
 
     # owner = serializers.ReadOnlyField(source='owner.username') # ADD THIS LINE
-    challenges = serializers.RelatedField(many=True, read_only=True)
+    # challenges = serializers.RelatedField(many=True, read_only=True)
 
     class Meta:
         model = Hackathon
@@ -67,7 +67,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Challenge
-        fields = ('id', 'title', 'hackathon', 'solvers')
+        fields = ('id', 'title', 'hackathon', 'solvers', 'type')
 
 
 

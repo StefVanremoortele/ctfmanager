@@ -10,7 +10,7 @@ from rest_framework.authentication import BasicAuthentication, \
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django.forms import Form
 # from ctfman.permissions import IsOwner
 
 
@@ -42,7 +42,6 @@ class HackathonViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, ) # TODO: Fix permissions
     # authentication_classes = ( authentication.IsAuthenticateds)
 
-
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
 
@@ -65,6 +64,9 @@ class ChallengeViewset(viewsets.ModelViewSet):
     serializer_class = serializers.ChallengeSerializer
     permission_classes = (  )
 
+    # def perform_create(self, serializer):
+        # serializer.save(type='MISC')
+        
 
 
 # class BlogPostViewSet(viewsets.ModelViewSet):
