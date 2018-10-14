@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   createHackathon(data: any): Observable<any> {
-    return this.http.put('/api/hackathons', JSON.stringify(data), this.getHttpOptions(true));
+    return this.http.post('/api/hackathons', JSON.stringify(data), this.getHttpOptions(true));
   }
 
   updateHackathon(hackathon: any): Observable<any> {

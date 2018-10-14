@@ -64,3 +64,17 @@ class Challenge(models.Model):
     def __str__(self):
         return self.title
 
+class LogEvent(models.Model):
+    """
+    The "Challenge" model for the CTFmanager app
+    """
+    # additional = models.CharField(max_length=50);
+    logType = models.CharField(max_length=50);
+    level = models.IntegerField();
+    fileName = models.CharField(max_length=50);
+    lineNumber = models.CharField(max_length=10);
+    message = models.CharField(max_length=500);
+    timestamp = models.DateTimeField(
+        default = timezone.now
+    );
+    

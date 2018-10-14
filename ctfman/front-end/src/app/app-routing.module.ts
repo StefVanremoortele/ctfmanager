@@ -1,14 +1,13 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UnauthorizedComponent, NotFoundComponent } from '.';
-import { CaptureTheFlagComponent } from './capture-the-flag';
 import { ChallengesComponent } from "./challenges";
+import { HackathonComponent } from './hackathon/hackathon.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
-
-  { path: 'CTF', component: CaptureTheFlagComponent },
+  { path: 'hackathons', component: HackathonComponent },
   { path: 'challenges', component: ChallengesComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '**', component: NotFoundComponent }

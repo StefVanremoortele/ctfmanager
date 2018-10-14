@@ -1,39 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, ApplicationRef } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-
 // import { routing } from './app-routing.module';
+import { ToastModule } from 'ng6-toastr/ng2-toastr';
 
 import { AppComponent } from './app.component';
 import { BlogPostService } from './blog_post.service';
 import { UserService } from './user.service';
-import { CaptureTheFlagComponent } from "./capture-the-flag";
 import { CoreModule } from './core';
-import { SharedModule } from './shared';
+import { SharedModule, ApiService } from './shared';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { CtfService } from './capture-the-flag/ctf.service';
 import { ChallengesComponent } from './challenges/challenges.component';
-import { CreateCtfComponent } from './capture-the-flag/create-ctf/create-ctf.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditCtfComponent } from './capture-the-flag/edit-ctf/edit-ctf.component';
+import { SizeSelectComponent } from './shared/models';
+import { HackathonComponent } from './hackathon/hackathon.component';
+import { HackathonEditComponent } from './hackathon/hackathon-edit/hackathon-edit.component';
+import { HackathonCreateComponent } from './hackathon/hackathon-create/hackathon-create.component';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ChallengesComponent,
-    CaptureTheFlagComponent,
-    CreateCtfComponent,
-    EditCtfComponent
+    SizeSelectComponent,
+    HackathonComponent,
+    HackathonEditComponent,
+    HackathonCreateComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule],
-  providers: [BlogPostService, UserService, CtfService],
+    BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule, LoggerModule.forRoot({ serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }), ToastModule.forRoot()],
+  providers: [BlogPostService, UserService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private _appRef: ApplicationRef) {}
+  constructor(private _appRef: ApplicationRef) { }
 
   ngDoBootstrap() {
     // document.addEventListener('WebComponentsReady', () => {

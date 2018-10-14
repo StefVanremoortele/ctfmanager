@@ -1,4 +1,3 @@
-export * from "./shared"
-export * from "./capture-the-flag"
-export * from "./challenges"
-export * from "./core"
+export * from "./shared";
+export * from "./challenges";
+export * from "./core";

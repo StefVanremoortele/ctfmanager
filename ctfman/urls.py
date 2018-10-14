@@ -11,6 +11,7 @@ router.register(r'users', views.UserViewSet, base_name='User')
 router.register(r'hackathons', views.HackathonViewset, base_name='Hackathon')
 # router.register(r'ctfs', views.CreateView, base_name='CTF')
 router.register(r'challenges', views.ChallengeViewset, base_name='Challenge')
+router.register(r'logs', views.LogEventViewSet, base_name='LogEvent')
 
 urlpatterns = [
     path(r'api/', include(router.urls) ),

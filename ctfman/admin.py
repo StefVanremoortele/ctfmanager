@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hackathon, Challenge
+from .models import Hackathon, Challenge, LogEvent
 
 
 # @admin.register(BlogPost)
@@ -15,4 +15,9 @@ class HackathonAdmin(admin.ModelAdmin):
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
     list_display = ('title', 'remarks')
+
+
+@admin.register(LogEvent)
+class LogEventAdmin(admin.ModelAdmin):
+    list_display = ('level', 'message')
 

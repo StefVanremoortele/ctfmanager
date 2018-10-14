@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {UserService} from './user.service';
 import {throwError} from 'rxjs';  // Angular 6/RxJS 6
+import { ToastsManager } from 'ng6-toastr/ng2-toastr';
 
 
 @Component({
   selector: 'app-root',
+
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   /**
    * An object representing the user for the login form
    */
@@ -26,7 +27,14 @@ export class AppComponent implements OnInit {
    */
   public new_post: any;
 
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+    this.toastr.setRootViewContainerRef(vcr);
+ 
+  }
+
+  popToast() {
+    this.toastr.error('success', 'Args Title');
+  }
 
   ngOnInit() {
     // check if  user has token in localstorage

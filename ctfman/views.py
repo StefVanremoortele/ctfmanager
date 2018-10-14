@@ -1,5 +1,5 @@
 from . import serializers
-from .models import Challenge, Hackathon
+from .models import Challenge, Hackathon, LogEvent
 from .permissions import ReadOnly
 from django.contrib.auth.models import User
 from django.http import Http404, JsonResponse
@@ -40,7 +40,7 @@ class HackathonViewset(viewsets.ModelViewSet):
     queryset = Hackathon.objects.all()
     serializer_class = serializers.HackathonSerializer
     permission_classes = (permissions.IsAuthenticated, ) # TODO: Fix permissions
-    # authentication_classes = ( authentication.IsAuthenticateds)
+    authentication_classes = ( CsrfExemptSessionAuthentication, BasicAuthentication)
 
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
@@ -99,3 +99,15 @@ class ChallengeViewset(viewsets.ModelViewSet):
 #             serializer.save(user=User.objects.get(id=1))
 #         else:
 #             serializer.save(user=self.request.user)
+
+
+
+class LogEventViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Ctf model
+    """
+    queryset = LogEvent.objects.all()
+    serializer_class = serializers.LogEventSerializer
+    # permission_classes = ( )
+    permission_classes = (permissions.AllowAny, )
+    authentication_classes = ( CsrfExemptSessionAuthentication, )

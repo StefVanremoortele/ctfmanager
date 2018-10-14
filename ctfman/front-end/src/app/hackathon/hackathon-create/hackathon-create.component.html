@@ -1,0 +1,57 @@
+<p>
+  hackathon-create works!
+</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create new ctf</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="hackathonCreationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+
+        <label for="ctf-name">CTF name</label>
+        <div>
+          <input id="ctf-name" type="text" formControlName="name" name="hackathon_name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <label for="ctf-type">type</label>
+        <div>
+          <input id="ctf-type" type="text" formControlName="type" name="hackathon_type" [ngClass]="{'is-invalid': f.type.errors}">
+          <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+            <div *ngIf="f.type.errors.required">Type is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Create</button>
+        </div>
+        <!-- <label for="startDate">Start date</label>
+        <div class="input-group">
+          <input id="startDate" class="form-control" [(ngModel)]="startDate" (ngModelChange)="updateStartDate(startDate)" value="{{ hackathon?.startDate }}" placeholder="{{ hackathon?.stasrtDate }}" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="sdp.toggle()" type="button"></button>
+          </div>
+        </div>
+        <label for="endDate">End date</label>
+        <div class="input-group">
+          <input id="endDate" class="form-control" [(ngModel)]="endDate" (ngModelChange)="updateEndDate(endDate)" value="{{ hackathon?.endDate }}" placeholder="{{ hackathon?.endDate }}" name="edp" ngbDatepicker #edp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="edp.toggle()" type="button"></button>
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div> -->
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create new CTF</button>
+
+
+<pre>{{closeResult}}</pre>

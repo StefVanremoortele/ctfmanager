@@ -1,6 +1,7 @@
+from .models import Challenge, Hackathon, LogEvent
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Hackathon, Challenge
+
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -97,3 +98,11 @@ class ChallengeSerializer(serializers.ModelSerializer):
     #     instance.style = validated_data.get('style', instance.style)
     #     instance.save()
     #     return instance
+
+
+class LogEventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = LogEvent
+        fields = ('level', 'message')
+        

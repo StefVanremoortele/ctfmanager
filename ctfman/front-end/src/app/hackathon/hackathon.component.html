@@ -1,0 +1,34 @@
+<p>
+  hackathon works!
+</p>
+
+
+<div *ngIf="this.hackathon_list; else noHackathons">
+  <div class="col-sm-12">
+    <div class="row mb-3">
+          <div class="col-md-2 mbhtml -1"><strong>Name</strong></div>
+          <div class="col-md-2 mb-1"><strong>Start</strong></div>
+          <div class="col-md-2 mb-1"><strong>End</strong></div>
+          <div class="col-md-2 mb-1"><strong>Rating</strong></div>
+    </div>
+    <div *ngFor="let hackathon of hackathon_list">
+      <div class="row mb-3">
+        <div class="col-md-2 mb-1">{{ hackathon.name }}</div>
+        <div class="col-md-2 mb-1">{{ hackathon.startDate | date:'d LLLL hh:mm' }}</div>
+        <div class="col-md-2 mb-1">{{ hackathon.endDate | date:'d LLLL hh:mm' }}</div>
+        <div class="col-md-2 mb-1">{{ hackathon.rating }}</div>
+        <app-hackathon-edit (modal_saved_action)="modal_saved_action($event)" [hackathon_id]="hackathon.id"></app-hackathon-edit>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noHackathons>
+  <div class="col-sm-12">
+    <div>
+      <p>No CTFs found</p>
+    </div>
+  </div>
+</ng-template>
+
+<app-hackathon-create></app-hackathon-create>
