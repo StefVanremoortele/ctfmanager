@@ -1,0 +1,22 @@
+
+TODOs
+------
+
+## create docker project for co-development and version control
+
+
+
+
+Project description
+-------------------
+The goal of this project is to create a platform to register all hackathons you participate in.
+You can add hackathons and challenges of different types.
+Users can do perform several voting actions: 
+    - users can set the priority of a challenge from an active hackathon they participate in
+    - users can give challenges and hackathons a rating
+Users can give remarks to a hackathon or challenge.
+For challenges, it should also be possible register write-ups using markdown syntax.
+Hackathons can be searched through, as well as challenges.
+At last, it should be possible to create a pdf from the write-ups from each challenge of a hackathon.
+ 
+The app is meant for a limited user base.

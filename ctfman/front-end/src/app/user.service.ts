@@ -44,7 +44,7 @@ export class UserService {
 
   isLoggedIn() {
     // check if user has token in session storage
-    let token = localStorage.getItem('token'); 
+    let token = localStorage.getItem('token');
     if (token) {
       // verify token to api
       this.http.post('/api-token-verify/', {"token": token}, this.httpOptions).subscribe(
@@ -104,15 +104,15 @@ export class UserService {
   private updateData(token) {
     this.token = token;
     this.errors = [];
-    
+
     // decode the token to read the username and expiration timestamp
     const token_parts = this.token.split(/\./);
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000);
     this.username = token_decoded.username;
-    
+
     // save token in the browser session
-    localStorage.setItem('token', token); 
+    localStorage.setItem('token', token);
   }
 
 }

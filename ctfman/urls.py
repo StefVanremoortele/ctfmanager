@@ -2,7 +2,7 @@ from django.urls import path, re_path, include
 from rest_framework import routers
 
 from . import views
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # router = routers.DefaultRouter(trailing_slash=False)
 router = routers.DefaultRouter(trailing_slash=False)
@@ -20,3 +20,6 @@ urlpatterns = [
     re_path(r'.*', views.index, name='index'), 
 
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()

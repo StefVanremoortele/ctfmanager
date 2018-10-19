@@ -19,6 +19,10 @@ from django.urls import path, re_path
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 import django.urls 
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'api-token-auth/', obtain_jwt_token),
@@ -27,3 +31,6 @@ urlpatterns = [
     re_path(r'', include('ctfman.urls')),
 
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
