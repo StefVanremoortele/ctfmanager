@@ -1,0 +1,33 @@
+{
+  "Services": {
+    "db": {
+      "Env": [
+        "MYSQL_ROOT_PASSWORD=performer", 
+        "MYSQL_DATABASE=ctfmanagerDb"
+      ], 
+      "Image": "mysql@sha256:038f5f6ea8c8f63cfce1bce9c057ab3691cad867e18da8ad4ba6c90874d0537a", 
+      "Networks": [
+        "webpage"
+      ], 
+      "Ports": [
+        {
+          "Port": 3306, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "web": {
+      "Image": "clyde542/ctfmanager@sha256:54e652577020c0050a5d92f3ccc5f00bcbd33a58db669da93f1c55028852342d", 
+      "Networks": [
+        "webpage"
+      ], 
+      "Ports": [
+        {
+          "Port": 8000, 
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}
