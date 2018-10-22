@@ -11,7 +11,8 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - webpage
+        webpage:
+            ipv4_address: 172.25.0.5
     
 
   web:
@@ -19,8 +20,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: stefvanremoortele/ctfmanager
-    stdin_open: true
-    tty: true
     volumes:
       - .:/code
     ports:
@@ -28,7 +27,13 @@ services:
     depends_on:
       - db
     networks:
-      - webpage
+        webpage:
+            ipv4_address: 172.25.0.6
+
 
 networks:
   webpage:
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.25.0.0/24
