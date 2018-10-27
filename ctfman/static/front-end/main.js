@@ -38,6 +38,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! . */ "./src/app/index.ts");
 /* harmony import */ var _challenges__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./challenges */ "./src/app/challenges/index.ts");
 /* harmony import */ var _hackathon_hackathon_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hackathon/hackathon.component */ "./src/app/hackathon/hackathon.component.ts");
+/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,8 +50,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: 'home', component: _home__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"] },
     { path: 'hackathons', component: _hackathon_hackathon_component__WEBPACK_IMPORTED_MODULE_4__["HackathonComponent"] },
     { path: 'challenges', component: _challenges__WEBPACK_IMPORTED_MODULE_3__["ChallengesComponent"] },
     { path: 'unauthorized', component: ___WEBPACK_IMPORTED_MODULE_2__["UnauthorizedComponent"] },
@@ -95,7 +98,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n\n  <!-- Logged out view -->\n  <div *ngIf=\"!_userService.token\">\n    <h2>Welcome to CTFMAN</h2>\n    <h3>Please log in</h3>\n    <div>\n      <div class=\"col-sm-4\">\n        <label>Username:</label><br />\n        <input type=\"text\" name=\"login-username\" [(ngModel)]=\"user.username\">\n        <span *ngFor=\"let error of _userService.errors.username\"><br />{{ error }}</span></div>\n      <div class=\"col-sm-4\">\n        <label>Password:</label><br />\n        <input type=\"password\" name=\"login-password\" [(ngModel)]=\"user.password\">\n        <span *ngFor=\"let error of _userService.errors.password\"><br />{{ error }}</span>\n      </div>\n      <div class=\"col-sm-4\">\n        <button (click)=\"login()\" class=\"btn btn-primary\">Log In</button>&nbsp;\n      </div>\n    </div>\n    <h2>or register</h2>\n    <div class=\"col-sm-4\">\n      <label>Username:</label><br />\n      <input type=\"text\" name=\"register-username\" [(ngModel)]=\"newUser.username\">\n    </div>\n    <div class=\"col-sm-4\">\n      <label>Email:</label><br />\n      <input type=\"text\" name=\"register-email\" [(ngModel)]=\"newUser.email\">\n    </div>\n    <div class=\"col-sm-4\">\n      <label>Password:</label><br />\n      <input type=\"password\" name=\"register-password\" [(ngModel)]=\"newUser.password\">\n    </div>\n    <div class=\"col-sm-4\">\n      <button (click)=\"register()\" class=\"btn btn-primary\">Register</button>&nbsp;\n    </div>\n  </div>\n\n  <!-- Logged in view -->\n  <div *ngIf=\"_userService.token\">\n    <div class=\"float-right\">Hi, {{ _userService.username }}.<br />\n      <button (click)=\"logout()\" class=\"btn btn-primary pull-right\">Log out</button>&nbsp;\n    </div>\n    <div class=\"col-sm-10\">\n      <nav>\n        <h3>Menu</h3>\n        <ul>\n          <li><a routerLink=\"hackathons\">View hackathons</a></li>\n          <li><a routerLink=\"challenges\">View Challenges</a></li>\n        </ul>\n      </nav>\n      <hr>\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n\n<!-- \n    \n    <div class=\"row\" *ngIf=\"!_userService.token\">\n      <div class=\"col-sm-4\">\n        <label>Username:</label><br />\n        <input type=\"text\" name=\"login-username\" [(ngModel)]=\"user.username\">\n        <span *ngFor=\"let error of _userService.errors.username\"><br />{{ error }}</span></div>\n        <div class=\"col-sm-4\">\n          <label>Password:</label><br />\n          <input type=\"password\" name=\"login-password\" [(ngModel)]=\"user.password\">\n          <span *ngFor=\"let error of _userService.errors.password\"><br />{{ error }}</span>\n        </div>\n        <div class=\"col-sm-4\">\n          <button (click)=\"login()\" class=\"btn btn-primary\">Log In</button>&nbsp;\n  </div>\n  <div class=\"col-sm-12\">\n    <span *ngFor=\"let error of _userService.errors.non_field_errors\">{{ error }}<br /></span>\n  </div>\n</div>\n<div class=\"row\" *ngIf=\"_userService.token\">\n  <div class=\"col-sm-12\">You are logged in as {{ _userService.username }}.<br />\n    Token Expires: {{ _userService.token_expires }}<br />\n    <button (click)=\"refreshToken()\" class=\"btn btn-primary\">Refresh Token</button>&nbsp;\n    <button (click)=\"logout()\" class=\"btn btn-primary\">Log Out</button>&nbsp;\n  </div>\n</div> -->\n<!-- \n<h2 class=\"mt-3\">Micro Blog Posts</h2>\n<div *ngFor=\"let post of posts\">\n  <div class=\"row mb-3\">\n    <label class=\"col-md-2\">By:</label>\n    <div class=\"col-md-2 mb-1\">{{ post.user }}</div>\n    <label class=\"col-md-2\">Date:</label>\n    <div class=\"col-md-6\">{{ post.date }}</div>\n    <div class=\"col-md-12\">{{ post.body }}</div>\n  </div>\n</div>\n\n<h3>Create a new post:</h3>\n\n<div class=\"row mb-1\">\n  <label class=\"col-md-3\">Enter your post:</label>\n  <div class=\"col-md-9 mb-1\"><input type=\"text\" name=\"body\" [(ngModel)]=\"new_post.body\"></div>\n  <div class=\"col-md-2 offset-3\">\n    <button (click)=\"createPost()\" class=\"btn btn-primary\">Save</button>\n  </div>\n</div> -->\n\n<!-- \n\n<h3>Register new user</h3>\n\n  <div>\n    <label for=\"user-name\">username</label>\n    <input type=\"text\" name=\"username\" [(ngModel)]=\"newUser.username\">\n\n    <label for=\"email\">email</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.email\">\n\n\n    <label for=\"password\">password</label>\n    <input type=\"text\" name=\"password\" [(ngModel)]=\"newUser.password\">\n\n    <div class=\"col-md-2 offset-3\">\n      <button (click)=\"register()\" class=\"btn btn-primary\">Register </button>\n    </div>\n\n  </div> -->"
+module.exports = "<div class=\"container-fluid\">\n\n  <!-- Logged out view -->\n  <div *ngIf=\"!_userService.token\">\n    <h2>Welcome to ctfman</h2>\n    <h3>Please log in</h3>\n    <div>\n      <div class=\"col-sm-4\">\n        <label>Username:</label><br />\n        <input type=\"text\" name=\"login-username\" [(ngModel)]=\"user.username\">\n        <span *ngFor=\"let error of _userService.errors.username\"><br />{{ error }}</span></div>\n      <div class=\"col-sm-4\">\n        <label>Password:</label><br />\n        <input type=\"password\" name=\"login-password\" [(ngModel)]=\"user.password\">\n        <span *ngFor=\"let error of _userService.errors.password\"><br />{{ error }}</span>\n      </div>\n      <div class=\"col-sm-4\">\n        <button (click)=\"login()\" class=\"btn btn-primary\">Log In</button>&nbsp;\n      </div>\n    </div>\n    <h2>or register</h2>\n    <div class=\"col-sm-4\">\n      <label>Username:</label><br />\n      <input type=\"text\" name=\"register-username\" [(ngModel)]=\"newUser.username\">\n    </div>\n    <div class=\"col-sm-4\">\n      <label>Email:</label><br />\n      <input type=\"text\" name=\"register-email\" [(ngModel)]=\"newUser.email\">\n    </div>\n    <div class=\"col-sm-4\">\n      <label>Password:</label><br />\n      <input type=\"password\" name=\"register-password\" [(ngModel)]=\"newUser.password\">\n    </div>\n    <div class=\"col-sm-4\">\n      <button (click)=\"register()\" class=\"btn btn-primary\">Register</button>&nbsp;\n    </div>\n  </div>\n\n  <!-- Logged in view -->\n  <div *ngIf=\"_userService.token\">\n    <div class=\"float-right\">Hi, {{ _userService.username }}.<br />\n\n      <button mat-button color=\"primary\" (click)=\"openAccount()\" matTooltip=\"\n          under construction\">\n        <mat-icon svgIcon=\"account\"></mat-icon>\n        Account\n      </button>\n      <!-- <button (click)=\"logout()\" class=\"btn btn-primary pull-right\">Log out</button>&nbsp; -->\n    </div>\n    <div class=\"col-sm-10\">\n      <nav class='navigation'>\n        <h3>Menu</h3>\n        <ul>\n          <li><a routerLink=\"home\">\n              <mat-icon>home</mat-icon>\n            </a></li>\n          <li><a routerLink=\"hackathons\">View hackathons</a></li>\n          <li><a routerLink=\"challenges\">View Challenges</a></li>\n        </ul>\n      </nav>\n      <hr>\n      <router-outlet></router-outlet>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n\n<!-- \n    \n    <div class=\"row\" *ngIf=\"!_userService.token\">\n      <div class=\"col-sm-4\">\n        <label>Username:</label><br />\n        <input type=\"text\" name=\"login-username\" [(ngModel)]=\"user.username\">\n        <span *ngFor=\"let error of _userService.errors.username\"><br />{{ error }}</span></div>\n        <div class=\"col-sm-4\">\n          <label>Password:</label><br />\n          <input type=\"password\" name=\"login-password\" [(ngModel)]=\"user.password\">\n          <span *ngFor=\"let error of _userService.errors.password\"><br />{{ error }}</span>\n        </div>\n        <div class=\"col-sm-4\">\n          <button (click)=\"login()\" class=\"btn btn-primary\">Log In</button>&nbsp;\n  </div>\n  <div class=\"col-sm-12\">\n    <span *ngFor=\"let error of _userService.errors.non_field_errors\">{{ error }}<br /></span>\n  </div>\n</div>\n<div class=\"row\" *ngIf=\"_userService.token\">\n  <div class=\"col-sm-12\">You are logged in as {{ _userService.username }}.<br />\n    Token Expires: {{ _userService.token_expires }}<br />\n    <button (click)=\"refreshToken()\" class=\"btn btn-primary\">Refresh Token</button>&nbsp;\n    <button (click)=\"logout()\" class=\"btn btn-primary\">Log Out</button>&nbsp;\n  </div>\n</div> -->\n<!-- \n<h2 class=\"mt-3\">Micro Blog Posts</h2>\n<div *ngFor=\"let post of posts\">\n  <div class=\"row mb-3\">\n    <label class=\"col-md-2\">By:</label>\n    <div class=\"col-md-2 mb-1\">{{ post.user }}</div>\n    <label class=\"col-md-2\">Date:</label>\n    <div class=\"col-md-6\">{{ post.date }}</div>\n    <div class=\"col-md-12\">{{ post.body }}</div>\n  </div>\n</div>\n\n<h3>Create a new post:</h3>\n\n<div class=\"row mb-1\">\n  <label class=\"col-md-3\">Enter your post:</label>\n  <div class=\"col-md-9 mb-1\"><input type=\"text\" name=\"body\" [(ngModel)]=\"new_post.body\"></div>\n  <div class=\"col-md-2 offset-3\">\n    <button (click)=\"createPost()\" class=\"btn btn-primary\">Save</button>\n  </div>\n</div> -->\n\n<!-- \n\n<h3>Register new user</h3>\n\n  <div>\n    <label for=\"user-name\">username</label>\n    <input type=\"text\" name=\"username\" [(ngModel)]=\"newUser.username\">\n\n    <label for=\"email\">email</label>\n    <input type=\"text\" name=\"email\" [(ngModel)]=\"newUser.email\">\n\n\n    <label for=\"password\">password</label>\n    <input type=\"text\" name=\"password\" [(ngModel)]=\"newUser.password\">\n\n    <div class=\"col-md-2 offset-3\">\n      <button (click)=\"register()\" class=\"btn btn-primary\">Register </button>\n    </div>\n\n  </div> -->"
 
 /***/ }),
 
@@ -106,7 +109,7 @@ module.exports = "<div class=\"container-fluid\">\n\n  <!-- Logged out view -->\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".navigation li {\n  display: inline;\n  padding: 10px; }\n"
 
 /***/ }),
 
@@ -125,6 +128,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng6-toastr/ng2-toastr */ "./node_modules/ng6-toastr/ng2-toastr.js");
 /* harmony import */ var ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _shared_services_custom_icon_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shared/services/custom-icon.service */ "./src/app/shared/services/custom-icon.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -138,11 +144,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
  // Angular 6/RxJS 6
 
+
+
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent(_userService, toastr, vcr) {
+    function AppComponent(_userService, toastr, vcr, matIconRegistry, domSanitizer, customIconService) {
         this._userService = _userService;
         this.toastr = toastr;
+        this.matIconRegistry = matIconRegistry;
+        this.domSanitizer = domSanitizer;
+        this.customIconService = customIconService;
         this.toastr.setRootViewContainerRef(vcr);
+        this.customIconService.init();
+        // iconRegistry.addSvgIcon('account', sanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/account.svg'))
+        // iconRegistry.addSvgIcon('add-circle', sanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/add-circle.svg'))
+        // iconRegistry.addSvgIcon('code', sanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/code.svg'))
     }
     AppComponent.prototype.popToast = function () {
         this.toastr.error('success', 'Args Title');
@@ -161,6 +177,9 @@ var AppComponent = /** @class */ (function () {
             email: '',
             password: '',
         };
+    };
+    AppComponent.prototype.openAccount = function () {
+        console.log('action not yet implemented');
     };
     AppComponent.prototype.login = function () {
         this._userService.login({ 'username': this.user.username, 'password': this.user.password });
@@ -189,7 +208,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastsManager"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastsManager"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconRegistry"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["DomSanitizer"], _shared_services_custom_icon_service__WEBPACK_IMPORTED_MODULE_6__["CustomIconService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -229,6 +248,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hackathon_hackathon_edit_hackathon_edit_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./hackathon/hackathon-edit/hackathon-edit.component */ "./src/app/hackathon/hackathon-edit/hackathon-edit.component.ts");
 /* harmony import */ var _hackathon_hackathon_create_hackathon_create_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./hackathon/hackathon-create/hackathon-create.component */ "./src/app/hackathon/hackathon-create/hackathon-create.component.ts");
 /* harmony import */ var ngx_logger__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ngx-logger */ "./node_modules/ngx-logger/esm5/ngx-logger.js");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./material.module */ "./src/app/material.module.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _shared_services_custom_icon_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./shared/services/custom-icon.service */ "./src/app/shared/services/custom-icon.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -244,6 +268,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 // import { routing } from './app-routing.module';
+
+
+
+
+
 
 
 
@@ -276,13 +305,25 @@ var AppModule = /** @class */ (function () {
                 _shared_models__WEBPACK_IMPORTED_MODULE_15__["SizeSelectComponent"],
                 _hackathon_hackathon_component__WEBPACK_IMPORTED_MODULE_16__["HackathonComponent"],
                 _hackathon_hackathon_edit_hackathon_edit_component__WEBPACK_IMPORTED_MODULE_17__["HackathonEditComponent"],
-                _hackathon_hackathon_create_hackathon_create_component__WEBPACK_IMPORTED_MODULE_18__["HackathonCreateComponent"]
+                _hackathon_hackathon_create_hackathon_create_component__WEBPACK_IMPORTED_MODULE_18__["HackathonCreateComponent"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_20__["HomeComponent"],
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _core__WEBPACK_IMPORTED_MODULE_9__["CoreModule"], _shared__WEBPACK_IMPORTED_MODULE_10__["SharedModule"], _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_14__["NgbModule"], ngx_logger__WEBPACK_IMPORTED_MODULE_19__["LoggerModule"].forRoot({ serverLoggingUrl: '/api/logs', level: ngx_logger__WEBPACK_IMPORTED_MODULE_19__["NgxLoggerLevel"].DEBUG, serverLogLevel: ngx_logger__WEBPACK_IMPORTED_MODULE_19__["NgxLoggerLevel"].ERROR }), ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastModule"].forRoot()
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_common__WEBPACK_IMPORTED_MODULE_23__["CommonModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _core__WEBPACK_IMPORTED_MODULE_9__["CoreModule"], _shared__WEBPACK_IMPORTED_MODULE_10__["SharedModule"], _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_14__["NgbModule"], _material_module__WEBPACK_IMPORTED_MODULE_21__["MaterialModule"], ngx_logger__WEBPACK_IMPORTED_MODULE_19__["LoggerModule"].forRoot({ serverLoggingUrl: '/api/logs', level: ngx_logger__WEBPACK_IMPORTED_MODULE_19__["NgxLoggerLevel"].DEBUG, serverLogLevel: ngx_logger__WEBPACK_IMPORTED_MODULE_19__["NgxLoggerLevel"].ERROR }), ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastModule"].forRoot()
             ],
-            providers: [_blog_post_service__WEBPACK_IMPORTED_MODULE_7__["BlogPostService"], _user_service__WEBPACK_IMPORTED_MODULE_8__["UserService"], _shared__WEBPACK_IMPORTED_MODULE_10__["ApiService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            exports: [_hackathon_hackathon_edit_hackathon_edit_component__WEBPACK_IMPORTED_MODULE_17__["HackathonEditComponent"]],
+            providers: [_blog_post_service__WEBPACK_IMPORTED_MODULE_7__["BlogPostService"], _user_service__WEBPACK_IMPORTED_MODULE_8__["UserService"], _shared__WEBPACK_IMPORTED_MODULE_10__["ApiService"], _shared_services_custom_icon_service__WEBPACK_IMPORTED_MODULE_24__["CustomIconService"],
+                {
+                    provide: _angular_material__WEBPACK_IMPORTED_MODULE_22__["MatDialogRef"],
+                    useValue: {
+                        close: function (dialogResult) { }
+                    }
+                }],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
+            entryComponents: [
+                _hackathon_hackathon_edit_hackathon_edit_component__WEBPACK_IMPORTED_MODULE_17__["HackathonEditComponent"],
+                _hackathon_hackathon_create_hackathon_create_component__WEBPACK_IMPORTED_MODULE_18__["HackathonCreateComponent"]
+            ]
         }),
         __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ApplicationRef"]])
     ], AppModule);
@@ -825,7 +866,7 @@ var WriteOutJsonInterceptor = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  hackathon-create works!\n</p>\n<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\" id=\"modal-basic-title\">Create new ctf</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"close('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"hackathonCreationForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n\n        <label for=\"ctf-name\">CTF name</label>\n        <div>\n          <input id=\"ctf-name\" type=\"text\" formControlName=\"name\" name=\"hackathon_name\" [ngClass]=\"{'is-invalid': submitted && f.name.errors}\">\n          <div *ngIf=\"submitted && f.name.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.name.errors.required\">Name is required</div>\n          </div>\n        </div>\n        <label for=\"ctf-type\">type</label>\n        <div>\n          <input id=\"ctf-type\" type=\"text\" formControlName=\"type\" name=\"hackathon_type\" [ngClass]=\"{'is-invalid': f.type.errors}\">\n          <div *ngIf=\"submitted && f.type.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.type.errors.required\">Type is required</div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <button [disabled]=\"loading\" class=\"btn btn-primary\">Create</button>\n        </div>\n        <!-- <label for=\"startDate\">Start date</label>\n        <div class=\"input-group\">\n          <input id=\"startDate\" class=\"form-control\" [(ngModel)]=\"startDate\" (ngModelChange)=\"updateStartDate(startDate)\" value=\"{{ hackathon?.startDate }}\" placeholder=\"{{ hackathon?.stasrtDate }}\" name=\"sdp\" ngbDatepicker #sdp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"sdp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n        <label for=\"endDate\">End date</label>\n        <div class=\"input-group\">\n          <input id=\"endDate\" class=\"form-control\" [(ngModel)]=\"endDate\" (ngModelChange)=\"updateEndDate(endDate)\" value=\"{{ hackathon?.endDate }}\" placeholder=\"{{ hackathon?.endDate }}\" name=\"edp\" ngbDatepicker #edp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"edp.toggle()\" type=\"button\"></button>\n          </div>\n        </div> -->\n      </div>\n    </form>\n  </div>\n  <!-- <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"modal.close('Save click')\">Save</button>\n  </div> -->\n</ng-template>\n\n<button class=\"btn btn-lg btn-outline-primary\" (click)=\"open(content)\">Create new CTF</button>\n\n\n<pre>{{closeResult}}</pre>"
+module.exports = "<h1 matDialogTitle>Create hackathon</h1>\n\n<mat-dialog-content>\n  <form [formGroup]=\"hackathonCreationForm\" (ngSubmit)=\"createHackathon(hackathonCreationForm.value)\">\n\n    <div class=\"hackathon-creation-container\">\n      <mat-form-field class=\"form-element\">\n        <input matInput placeholder=\"Name\" formControlName=\"name\">\n        <mat-error *ngIf=\"!name.valid && name.touched\">\n          {{ titleAlert }}\n        </mat-error>\n      </mat-form-field>\n\n      <mat-form-field class=\"form-element\">\n        <input matInput [matDatepicker]=\"startDate\" placeholder=\"Start date\" formControlName=\"startDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"startDate\"></mat-datepicker-toggle>\n        <mat-datepicker #startDate></mat-datepicker>\n      </mat-form-field>\n\n      <mat-form-field class=\"form-element\">\n        <input matInput [matDatepicker]=\"endDate\" placeholder=\"End date\" formControlName=\"endDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"endDate\"></mat-datepicker-toggle>\n        <mat-datepicker #endDate></mat-datepicker>\n      </mat-form-field>\n\n\n      <!-- <mat-form-field class=\"form-element\">\n        <input matInput placeholder=\"Rating\" formControlName=\"rating\" type=\"number\">\n        <mat-hint>Select a rating between 1 and 5</mat-hint>\n        <mat-error *ngIf=\"!hackathonCreationForm.controls['rating'].valid && hackathonCreationForm.controls['rating'].touched\">\n          {{ getErrorRating() }}\n        </mat-error>\n      </mat-form-field> -->\n      \n      <!-- <mat-form-field>\n        <input matInput type=\"number\" min=1 max=5 placeholder=\"Rating\" formControlName=\"rating\">\n      </mat-form-field> -->\n    </div>\n  </form>\n</mat-dialog-content>\n\n<mat-dialog-actions>\n  <button mat-button (click)=\"createHackathon()\" tabindex=\"1\">Create</button>\n  <button mat-button mat-dialog-close tabindex=\"-1\">Cancel</button>\n</mat-dialog-actions>\n\n<p>{{this.errorMsg | json }}</p>\n\n\n<!-- material Input select pseudocode -->\n\n<!-- <mat-form-field>\n      <mat-select placeholder=\"Type\" value=\"{{ this.hackathon.type }}\">\n        <mat-option value=\"crypto\">crypt</mat-option>\n        <mat-option value=\"misc\">misc</mat-option>\n        <mat-option value=\"rev\">rev</mat-option>\n        <mat-option value=\"web\">web</mat-option>\n      </mat-select>\n    </mat-form-field>\n -->"
 
 /***/ }),
 
@@ -851,9 +892,10 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HackathonCreateComponent", function() { return HackathonCreateComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _shared_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/services */ "./src/app/shared/services/index.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _shared_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/services */ "./src/app/shared/services/index.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -867,61 +909,59 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HackathonCreateComponent = /** @class */ (function () {
-    function HackathonCreateComponent(formBuilder, modalService, _apiService) {
-        this.formBuilder = formBuilder;
-        this.modalService = modalService;
+    function HackathonCreateComponent(_apiService, formBuilder, dialogRef) {
         this._apiService = _apiService;
+        this.formBuilder = formBuilder;
+        this.dialogRef = dialogRef;
         this.submitted = false;
-        this.loading = true;
+        this.titleAlert = 'This field is required';
     }
     HackathonCreateComponent.prototype.ngOnInit = function () {
         this.hackathonCreationForm = this.formBuilder.group({
-            name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            name: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            startDate: [new Date(), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            endDate: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
         });
+        this.setChangeValidate();
     };
+    HackathonCreateComponent.prototype.setChangeValidate = function () {
+        this.hackathonCreationForm.get('name').setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(3)]);
+        this.titleAlert = "You need to specify at least 3 characters";
+        // this.hackathonCreationForm.get('name').setValidators(Validators.required);
+        this.hackathonCreationForm.get('name').updateValueAndValidity();
+    };
+    HackathonCreateComponent.prototype.getErrorRating = function () {
+        return this.hackathonCreationForm.get('rating').hasError('required') ? 'Field is required' :
+            this.hackathonCreationForm.get('rating').hasError('value') ? 'Not the right value' : 'Incorrect number';
+    };
+    Object.defineProperty(HackathonCreateComponent.prototype, "name", {
+        get: function () {
+            return this.hackathonCreationForm.get('name');
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(HackathonCreateComponent.prototype, "f", {
         get: function () { return this.hackathonCreationForm.controls; },
         enumerable: true,
         configurable: true
     });
-    HackathonCreateComponent.prototype.onSubmit = function () {
-        this.submitted = true;
-        this.createHackathon();
-        if (this.hackathonCreationForm.invalid) {
-            console.error("INVALIID!!");
-            return;
-        }
-    };
     HackathonCreateComponent.prototype.createHackathon = function () {
-        // console.log(this.hackathonCreationForm.value);
+        var _this = this;
+        console.log(this.hackathonCreationForm.value);
         this._apiService.createHackathon(this.hackathonCreationForm.value).subscribe(function (data) {
             console.log(data);
+            _this.dialogRef.close(true);
         }, function (err) {
-            console.error(err);
+            _this.handleError(err);
         });
     };
-    HackathonCreateComponent.prototype.open = function (content) {
-        var _this = this;
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(function (result) {
-            _this.closeResult = "Closed with: " + result;
-        }, function (reason) {
-            _this.closeResult = "Dismissed " + _this.getDismissReason(reason);
-        });
-    };
-    HackathonCreateComponent.prototype.close = function (reason) {
-        this.modalService.dismissAll(reason);
-    };
-    HackathonCreateComponent.prototype.getDismissReason = function (reason) {
-        if (reason === _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ModalDismissReasons"].ESC) {
-            return 'by pressing ESC';
-        }
-        else if (reason === _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ModalDismissReasons"].BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        }
-        else {
-            return "with: " + reason;
-        }
+    HackathonCreateComponent.prototype.handleError = function (error) {
+        console.log("ERROR!!" + error.message);
+        this.errorMsg = error;
+        Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["throwError"])(error.message || error);
     };
     HackathonCreateComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -929,10 +969,27 @@ var HackathonCreateComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./hackathon-create.component.html */ "./src/app/hackathon/hackathon-create/hackathon-create.component.html"),
             styles: [__webpack_require__(/*! ./hackathon-create.component.scss */ "./src/app/hackathon/hackathon-create/hackathon-create.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"], _shared_services__WEBPACK_IMPORTED_MODULE_2__["ApiService"]])
+        __metadata("design:paramtypes", [_shared_services__WEBPACK_IMPORTED_MODULE_1__["ApiService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"]])
     ], HackathonCreateComponent);
     return HackathonCreateComponent;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/hackathon/hackathon-create/index.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/hackathon/hackathon-create/index.ts ***!
+  \*****************************************************/
+/*! exports provided: HackathonCreateComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hackathon_create_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hackathon-create.component */ "./src/app/hackathon/hackathon-create/hackathon-create.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HackathonCreateComponent", function() { return _hackathon_create_component__WEBPACK_IMPORTED_MODULE_0__["HackathonCreateComponent"]; });
+
 
 
 
@@ -945,7 +1002,7 @@ var HackathonCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\" id=\"modal-basic-title\">Edit ctf</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"close('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form>\n      <div class=\"form-group\">\n        <label for=\"hackathon-name\">Hackathon name</label>\n        <div>\n          <input id=\"hackathon-name\" type=\"text\" [value]=\"hackathon?.name\" (input)=\"updateValue($event)\">\n        </div>\n        <label for=\"startDate\">Start date</label>\n        <div class=\"input-group\">\n          <input id=\"startDate\" class=\"form-control\" [(ngModel)]=\"startDate\" value=\"{{ hackathon?.startDate }}\"\n            (ngModelChange)=\"updateStartDate(startDate)\" name=\"sdp\" ngbDatepicker #sdp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"sdp.toggle()\" type=\"button\"></button>\n          </div>\n        </div> <label for=\"endDate\">End date</label>\n        <div class=\"input-group\">\n          <input id=\"endDate\" class=\"form-control\" [(ngModel)]=\"end_date\" (ngModelChange)=\"updateEndDate(end_date)\"\n            name=\"edp\" ngbDatepicker #edp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"edp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <label for=\"hackathon-rating\">Rating</label>\n      <div>\n        <input id=\"hackathon-rating\" type=\"text\" [value]=\"hackathon?.rating\" (input)=\"updateValue($event)\">\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"modal.close('Save click')\">Save</button>\n  </div>\n</ng-template>\n\n<!-- ng toaster test -->\n<button (click)=\"popToast()\">pop toast</button>\n\n<button class=\"btn btn-lg btn-outline-primary\" (click)=\"open(content)\">Edit</button>\n\n\n<!-- <pre>{{closeResult}}</pre> -->"
+module.exports = "<h1 matDialogTitle>Edit hackathon</h1>\n\n<div *ngIf=\"!loading; else loadingTemplate\">\n\n\n  <mat-dialog-content >\n    <form [formGroup]=\"hackathonEditForm\" (ngSubmit)=\"createHackathon(hackathonCreationForm.value)\">\n      <div class=\"hackathon-edit-container\">\n        <mat-form-field class=\"form-element\">\n          <input matInput placeholder=\"Name\" formControlName=\"name\">\n          <mat-error *ngIf=\"!name.valid && name.touched\">\n            {{ titleAlert }}\n          </mat-error>\n        </mat-form-field>\n\n        <!-- <mat-form-field>\n      <mat-select placeholder=\"Type\" value=\"{{ this.hackathon.type }}\">\n        <mat-option value=\"crypto\">crypt</mat-option>\n        <mat-option value=\"misc\">misc</mat-option>\n        <mat-option value=\"rev\">rev</mat-option>\n        <mat-option value=\"web\">web</mat-option>\n      </mat-select>\n    </mat-form-field>>\n -->\n        <mat-form-field class=\"form-element\">\n          <input matInput [matDatepicker]=\"startDate\" placeholder=\"Start date\" formControlName=\"startDate\">\n          <mat-datepicker-toggle matSuffix [for]=\"startDate\"></mat-datepicker-toggle>\n          <mat-datepicker #startDate></mat-datepicker>\n        </mat-form-field>\n\n        <mat-form-field class=\"form-element\">\n          <input matInput [matDatepicker]=\"endDate\" placeholder=\"End date\" formControlName=\"endDate\">\n          <mat-datepicker-toggle matSuffix [for]=\"endDate\"></mat-datepicker-toggle>\n          <mat-datepicker #endDate></mat-datepicker>\n        </mat-form-field>\n\n        <mat-form-field class=\"form-element\">\n          <input matInput type=\"number\" min=1 max=5 placeholder=\"Rating\" formControlName=\"rating\">\n          <mat-hint>Select a rating between 1 and 5</mat-hint>\n          <mat-error *ngIf=\"!hackathonEditForm.controls['rating'].valid && hackathonEditForm.controls['rating'].touched\">\n            {{ getErrorRating() }}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </form>\n  </mat-dialog-content>\n\n  <mat-dialog-actions>\n    <div class=\"form-element\">\n      <button mat-raised-button color=\"accent\" type=\"submit\" class=\"button\" [disabled]=\"!hackathonEditForm.valid\"\n        (click)=\"saveChanges()\">Save changes</button>\n    </div>\n    <!-- <button mat-button (click)=\"saveChanges()\" tabindex=\"1\">Save</button> -->\n    <button mat-button mat-dialog-close tabindex=\"-1\">Cancel</button>\n  </mat-dialog-actions>\n</div>\n\n\n\n<ng-template #loadingTemplate>\n  <div class=\"loading-spinner\">\n    <mat-progress-spinner class=\"example-margin\" [color]=\"color\" [mode]=\"mode\" [value]=\"value\">\n    </mat-progress-spinner>\n    <p>Saving changes ...</p>\n  </div>\n</ng-template>"
 
 /***/ }),
 
@@ -956,7 +1013,7 @@ module.exports = "<ng-template #content let-modal>\n  <div class=\"modal-header\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".fill-remaining-space {\n  /* This fills the remaining space, by using flexbox. \n       Every toolbar row uses a flexbox row layout. */\n  flex: 1 1 auto; }\n\n.container {\n  padding: 10px; }\n\n.form {\n  min-width: 50px;\n  max-width: 100px;\n  width: 100%; }\n\n.form-element {\n  padding: 5px 0px 25px 2px;\n  width: 100%; }\n\n.button {\n  width: 100%; }\n\n.loading-spinner {\n  align-items: center; }\n\n.loading-spinner mat-progress-spinner {\n    padding: 100px; }\n"
 
 /***/ }),
 
@@ -971,11 +1028,12 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HackathonEditComponent", function() { return HackathonEditComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _shared_services___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/services/ */ "./src/app/shared/services/index.ts");
-/* harmony import */ var ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng6-toastr/ng2-toastr */ "./node_modules/ng6-toastr/ng2-toastr.js");
-/* harmony import */ var ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var ngx_logger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-logger */ "./node_modules/ngx-logger/esm5/ngx-logger.js");
+/* harmony import */ var _shared_services___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/services/ */ "./src/app/shared/services/index.ts");
+/* harmony import */ var ngx_logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-logger */ "./node_modules/ngx-logger/esm5/ngx-logger.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/internal/observable/throwError */ "./node_modules/rxjs/internal/observable/throwError.js");
+/* harmony import */ var rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -985,105 +1043,112 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
 
 
 
 
 
 var HackathonEditComponent = /** @class */ (function () {
-    function HackathonEditComponent(modalService, _apiService, toastr, vcr, logger) {
-        this.modalService = modalService;
+    function HackathonEditComponent(data, dialog, snackBar, _apiService, logger, formBuilder, dialogRef) {
+        this.data = data;
+        this.dialog = dialog;
+        this.snackBar = snackBar;
         this._apiService = _apiService;
-        this.toastr = toastr;
         this.logger = logger;
-        this.modal_saved_action = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        // this.logger.debug('Your log message goes here');
+        this.formBuilder = formBuilder;
+        this.dialogRef = dialogRef;
+        this.titleAlert = 'This field is required';
     }
     HackathonEditComponent.prototype.ngOnInit = function () {
-        // this.load_hackathon(this.hackathon_id); 
+        this.loading = false;
+        this.hackathon = this.data.hackathon;
+        this.createForm();
+        this.setChangeValidate();
     };
-    HackathonEditComponent.prototype.popToast = function () {
-        this.toastr.error('success', 'Args Title');
+    HackathonEditComponent.prototype.createForm = function () {
+        this.hackathonEditForm = this.formBuilder.group({
+            name: [this.hackathon.name, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            startDate: [this.hackathon.startDate, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            endDate: [this.hackathon.endDate, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            rating: [this.hackathon.rating, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].min(1), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].max(5)]],
+            'validate': ''
+        });
     };
-    HackathonEditComponent.prototype.load_hackathon = function (hackathon_id) {
+    HackathonEditComponent.prototype.setChangeValidate = function () {
+        this.hackathonEditForm.get('name').setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3)]);
+        this.titleAlert = "You need to specify at least 3 characters";
+        // this.hackathonEditForm.get('name').setValidators(Validators.required);
+        this.hackathonEditForm.get('name').updateValueAndValidity();
+    };
+    HackathonEditComponent.prototype.getErrorRating = function () {
+        return this.hackathonEditForm.get('rating').hasError('required') ? 'Field is required' :
+            this.hackathonEditForm.get('rating').hasError('value') ? 'Not the right value' : 'Incorrect number';
+    };
+    Object.defineProperty(HackathonEditComponent.prototype, "name", {
+        get: function () {
+            return this.hackathonEditForm.get('name');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HackathonEditComponent.prototype, "f", {
+        get: function () { return this.hackathonEditForm.controls; },
+        enumerable: true,
+        configurable: true
+    });
+    HackathonEditComponent.prototype.saveChanges = function () {
         var _this = this;
-        this._apiService.getHackathon(hackathon_id).subscribe(function (data) {
-            _this.hackathon = data;
-            // this.hackathon.startDate = new Date(data.startDate);
-            // this.hackathon.endDate = new Date(data.endDate);
+        this.loading = true;
+        this._apiService.updateHackathon(this.hackathon.id, this.hackathonEditForm.value).subscribe(function (data) {
+            console.log(data);
         }, function (err) {
             console.log(err);
+            // TODO: Raise error
+            // prompt input validation
         }, function () {
-            _this.hackathon.startDate = new Date(_this.hackathon.startDate);
-            _this.hackathon.endDate = new Date(_this.hackathon.endDate);
+            _this.logger.log("Saved changes for hackathon #" + _this.hackathon.id);
+            _this.dialogRef.close(true);
         });
     };
-    HackathonEditComponent.prototype.save_changes = function () {
-        var _this = this;
-        this._apiService.updateHackathon(this.hackathon).subscribe(function (data) {
-            _this.modal_saved_action.emit(true);
-        }, function (err) {
-            _this.logger.error("Bad request. Check parameters.");
-        });
+    HackathonEditComponent.prototype.handleError = function (error) {
+        console.log("ERROR!!" + error.message);
+        this.errorMsg = error;
+        Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_5__["throwError"])(error.message || error);
     };
-    HackathonEditComponent.prototype.updateValue = function (e) {
-        var element_id = e.path[0].id;
-        if (element_id == "hackathon-name") {
-            this.hackathon.name = e.target.value;
-        }
-        if (element_id == "hackathon-rating") {
-            this.hackathon.rating = e.target.value;
-        }
-    };
-    HackathonEditComponent.prototype.updateStartDate = function (date) {
-        this.hackathon.startDate = new Date(date.year, date.month - 1, date.day);
-    };
-    HackathonEditComponent.prototype.updateEndDate = function (date) {
-        this.hackathon.endDate = new Date(date.year, date.month - 1, date.day);
-    };
-    HackathonEditComponent.prototype.open = function (content) {
-        var _this = this;
-        this.load_hackathon(this.hackathon_id);
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(function (result) {
-            _this.closeResult = "Closed with: " + result;
-            _this.save_changes();
-        }, function (reason) {
-            _this.closeResult = "Dismissed " + _this.getDismissReason(reason);
-        });
-    };
-    HackathonEditComponent.prototype.close = function (reason) {
-        this.modalService.dismissAll(reason);
-    };
-    HackathonEditComponent.prototype.getDismissReason = function (reason) {
-        if (reason === _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ModalDismissReasons"].ESC) {
-            return 'by pressing ESC';
-        }
-        else if (reason === _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ModalDismissReasons"].BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        }
-        else {
-            return "with: " + reason;
-        }
-    };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], HackathonEditComponent.prototype, "hackathon_id", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-        __metadata("design:type", Object)
-    ], HackathonEditComponent.prototype, "modal_saved_action", void 0);
     HackathonEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-hackathon-edit',
             template: __webpack_require__(/*! ./hackathon-edit.component.html */ "./src/app/hackathon/hackathon-edit/hackathon-edit.component.html"),
             styles: [__webpack_require__(/*! ./hackathon-edit.component.scss */ "./src/app/hackathon/hackathon-edit/hackathon-edit.component.scss")],
-            providers: [ngx_logger__WEBPACK_IMPORTED_MODULE_4__["NGXLogger"]]
+            providers: [ngx_logger__WEBPACK_IMPORTED_MODULE_2__["NGXLogger"]],
         }),
-        __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"], _shared_services___WEBPACK_IMPORTED_MODULE_2__["ApiService"], ng6_toastr_ng2_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastsManager"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], ngx_logger__WEBPACK_IMPORTED_MODULE_4__["NGXLogger"]])
+        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [Object, _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"], _shared_services___WEBPACK_IMPORTED_MODULE_1__["ApiService"], ngx_logger__WEBPACK_IMPORTED_MODULE_2__["NGXLogger"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"]])
     ], HackathonEditComponent);
     return HackathonEditComponent;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/hackathon/hackathon-edit/index.ts":
+/*!***************************************************!*\
+  !*** ./src/app/hackathon/hackathon-edit/index.ts ***!
+  \***************************************************/
+/*! exports provided: HackathonEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hackathon_edit_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hackathon-edit.component */ "./src/app/hackathon/hackathon-edit/hackathon-edit.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HackathonEditComponent", function() { return _hackathon_edit_component__WEBPACK_IMPORTED_MODULE_0__["HackathonEditComponent"]; });
+
 
 
 
@@ -1096,7 +1161,7 @@ var HackathonEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  hackathon works!\n</p>\n\n\n<div *ngIf=\"this.hackathon_list; else noHackathons\">\n  <div class=\"col-sm-12\">\n    <div class=\"row mb-3\">\n          <div class=\"col-md-2 mbhtml -1\"><strong>Name</strong></div>\n          <div class=\"col-md-2 mb-1\"><strong>Start</strong></div>\n          <div class=\"col-md-2 mb-1\"><strong>End</strong></div>\n          <div class=\"col-md-2 mb-1\"><strong>Rating</strong></div>\n    </div>\n    <div *ngFor=\"let hackathon of hackathon_list\">\n      <div class=\"row mb-3\">\n        <div class=\"col-md-2 mb-1\">{{ hackathon.name }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.startDate | date:'d LLLL hh:mm' }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.endDate | date:'d LLLL hh:mm' }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.rating }}</div>\n        <app-hackathon-edit (modal_saved_action)=\"modal_saved_action($event)\" [hackathon_id]=\"hackathon.id\"></app-hackathon-edit>\n      </div>\n    </div>\n  </div>\n</div>\n\n<ng-template #noHackathons>\n  <div class=\"col-sm-12\">\n    <div>\n      <p>No CTFs found</p>\n    </div>\n  </div>\n</ng-template>\n\n<app-hackathon-create></app-hackathon-create>"
+module.exports = "<div *ngIf=\"this.hackathon_list.length > 0; else noHackathons\">\n  <div class=\"col-sm-12\">\n    <div class=\"row mb-3\">\n      <div class=\"col-md-2 mb-1\"><strong>Name</strong></div>\n      <div class=\"col-md-2 mb-1\"><strong>Start</strong></div>\n      <div class=\"col-md-2 mb-1\"><strong>End</strong></div>\n      <div class=\"col-md-2 mb-1\"><strong>Rating</strong></div>\n      <!-- <mat-icon class=\"mat-icon-rtl-mirror\" svgIcon=\"thumb-up\"></mat-icon> -->\n      <button mat-button  color=\"primary\" (click)=\"openCreateDialog()\">\n        <mat-icon svgIcon=\"add-circle\"></mat-icon>\n        <!-- Add New -->\n      </button>\n    </div>\n    <div *ngFor=\"let hackathon of hackathon_list\" [@fadeInOut]>\n      <div class=\"row mb-3\">\n        <div class=\"col-md-2 mb-1\">{{ hackathon.name }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.startDate | date:'d LLLL hh:mm' }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.endDate | date:'d LLLL hh:mm' }}</div>\n        <div class=\"col-md-2 mb-1\">{{ hackathon.rating }}</div>\n        <p>\n          <button mat-button color=\"primary\" (click)=\"openEditDialog(hackathon)\">\n            <mat-icon svgIcon=\"edit\"></mat-icon>\n            <!-- Edit -->\n          </button>\n        </p>\n      </div>\n    </div>\n  </div>\n</div>\n\n<ng-template #noHackathons>\n  <div class=\"col-sm-12\">\n    <div>\n      <h3>No CTFs found</h3>\n      <button mat-flat-button color=\"primary\" (click)=\"openCreateDialog()\">Create New</button>\n    </div>\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -1123,6 +1188,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HackathonComponent", function() { return HackathonComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/services */ "./src/app/shared/services/index.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _hackathon_edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hackathon-edit */ "./src/app/hackathon/hackathon-edit/index.ts");
+/* harmony import */ var _hackathon_create__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hackathon-create */ "./src/app/hackathon/hackathon-create/index.ts");
+/* harmony import */ var _shared_services_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/animations */ "./src/app/shared/services/animations.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1134,13 +1203,62 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
+
 var HackathonComponent = /** @class */ (function () {
-    function HackathonComponent(_apiService) {
+    function HackathonComponent(_apiService, dialog, snackBar) {
         this._apiService = _apiService;
+        this.dialog = dialog;
+        this.snackBar = snackBar;
         this.hackathon_list = [];
     }
     HackathonComponent.prototype.ngOnInit = function () {
         this.loadHackathons();
+    };
+    HackathonComponent.prototype.openCreateDialog = function () {
+        var _this = this;
+        var dialogRef = this.dialog.open(_hackathon_create__WEBPACK_IMPORTED_MODULE_4__["HackathonCreateComponent"]);
+        var snack = this.snackBar.open('Opening create dialog');
+        snack.closeWithAction();
+        dialogRef.afterClosed().subscribe(function (showSnackBar) {
+            if (showSnackBar) {
+                snack.dismiss();
+                var a = document.createElement('a');
+                a.click();
+                a.remove();
+                snack.dismiss();
+                _this.snackBar.open('Successfully created new hackathon', 'Created', {
+                    duration: 2000,
+                });
+                _this.loadHackathons();
+            }
+        });
+    };
+    HackathonComponent.prototype.openEditDialog = function (hackathon_data) {
+        var _this = this;
+        console.log(hackathon_data);
+        var dialogRef = this.dialog.open(_hackathon_edit__WEBPACK_IMPORTED_MODULE_3__["HackathonEditComponent"], {
+            minWidth: 300,
+            maxWidth: 400,
+            data: { hackathon: hackathon_data }
+        });
+        var snack = this.snackBar.open('Opening edit dialog');
+        snack.closeWithAction();
+        dialogRef.afterClosed().subscribe(function (showSnackBar) {
+            if (showSnackBar) {
+                snack.dismiss();
+                var a = document.createElement('a');
+                a.click();
+                a.remove();
+                snack.dismiss();
+                _this.snackBar.open('Successfully written changes', 'Saved', {
+                    duration: 2000,
+                });
+                _this.loadHackathons();
+            }
+        });
     };
     HackathonComponent.prototype.loadHackathons = function () {
         var _this = this;
@@ -1156,12 +1274,95 @@ var HackathonComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-hackathon',
             template: __webpack_require__(/*! ./hackathon.component.html */ "./src/app/hackathon/hackathon.component.html"),
-            styles: [__webpack_require__(/*! ./hackathon.component.scss */ "./src/app/hackathon/hackathon.component.scss")]
+            styles: [__webpack_require__(/*! ./hackathon.component.scss */ "./src/app/hackathon/hackathon.component.scss")],
+            animations: [
+                _shared_services_animations__WEBPACK_IMPORTED_MODULE_5__["fadeInOut"]
+            ]
         }),
-        __metadata("design:paramtypes", [_shared_services__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+        __metadata("design:paramtypes", [_shared_services__WEBPACK_IMPORTED_MODULE_1__["ApiService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], HackathonComponent);
     return HackathonComponent;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/home/home.component.html":
+/*!******************************************!*\
+  !*** ./src/app/home/home.component.html ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  Welcome to the ctfmanage.\n  Collaborate in hackathons with your friends and start documenting your games right now!\n</p>\n\n<img src=\"./static/front-end/assets/img/hackathon.jpg\" alt=\"hackathon\" height=\"350\" width=\"550\">\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/home/home.component.scss":
+/*!******************************************!*\
+  !*** ./src/app/home/home.component.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/home/home.component.ts":
+/*!****************************************!*\
+  !*** ./src/app/home/home.component.ts ***!
+  \****************************************/
+/*! exports provided: HomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HomeComponent = /** @class */ (function () {
+    function HomeComponent() {
+    }
+    HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-home',
+            template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
+            styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HomeComponent);
+    return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/home/index.ts":
+/*!*******************************!*\
+  !*** ./src/app/home/index.ts ***!
+  \*******************************/
+/*! exports provided: HomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _home_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.component */ "./src/app/home/home.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return _home_component__WEBPACK_IMPORTED_MODULE_0__["HomeComponent"]; });
+
 
 
 
@@ -1171,12 +1372,18 @@ var HackathonComponent = /** @class */ (function () {
 /*!**************************!*\
   !*** ./src/app/index.ts ***!
   \**************************/
-/*! exports provided: ChallengesComponent, SharedModule, ApiService, NotFoundComponent, UnauthorizedComponent, ModuleImportGuard, throwIfAlreadyLoaded, LoggerService, CoreModule */
+/*! exports provided: fadeInOut, enterLeave, flyInOut, ChallengesComponent, SharedModule, ApiService, NotFoundComponent, UnauthorizedComponent, ModuleImportGuard, throwIfAlreadyLoaded, LoggerService, CoreModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared */ "./src/app/shared/index.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fadeInOut", function() { return _shared__WEBPACK_IMPORTED_MODULE_0__["fadeInOut"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "enterLeave", function() { return _shared__WEBPACK_IMPORTED_MODULE_0__["enterLeave"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "flyInOut", function() { return _shared__WEBPACK_IMPORTED_MODULE_0__["flyInOut"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return _shared__WEBPACK_IMPORTED_MODULE_0__["SharedModule"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return _shared__WEBPACK_IMPORTED_MODULE_0__["ApiService"]; });
@@ -1204,11 +1411,94 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/material.module.ts":
+/*!************************************!*\
+  !*** ./src/app/material.module.ts ***!
+  \************************************/
+/*! exports provided: MaterialModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialModule", function() { return MaterialModule; });
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
+/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/cdk/scrolling */ "./node_modules/@angular/cdk/esm5/scrolling.es5.js");
+/* harmony import */ var _angular_cdk_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/table */ "./node_modules/@angular/cdk/esm5/table.es5.js");
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+var MaterialModule = /** @class */ (function () {
+    function MaterialModule() {
+    }
+    MaterialModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
+            exports: [
+                _angular_cdk_table__WEBPACK_IMPORTED_MODULE_2__["CdkTableModule"],
+                _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_3__["CdkTreeModule"],
+                _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_0__["DragDropModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatAutocompleteModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatBadgeModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatBottomSheetModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDividerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatExpansionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatProgressBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRippleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSidenavModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSnackBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatStepperModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTooltipModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTreeModule"],
+                _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_1__["ScrollingModule"],
+            ]
+        })
+    ], MaterialModule);
+    return MaterialModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/index.ts":
 /*!*********************************!*\
   !*** ./src/app/shared/index.ts ***!
   \*********************************/
-/*! exports provided: SharedModule, ApiService */
+/*! exports provided: fadeInOut, enterLeave, flyInOut, SharedModule, ApiService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1217,6 +1507,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return _shared_module__WEBPACK_IMPORTED_MODULE_0__["SharedModule"]; });
 
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services */ "./src/app/shared/services/index.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fadeInOut", function() { return _services__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "enterLeave", function() { return _services__WEBPACK_IMPORTED_MODULE_1__["enterLeave"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "flyInOut", function() { return _services__WEBPACK_IMPORTED_MODULE_1__["flyInOut"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return _services__WEBPACK_IMPORTED_MODULE_1__["ApiService"]; });
 
 
@@ -1353,6 +1649,62 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/shared/services/animations.ts":
+/*!***********************************************!*\
+  !*** ./src/app/shared/services/animations.ts ***!
+  \***********************************************/
+/*! exports provided: fadeInOut, enterLeave, flyInOut */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fadeInOut", function() { return fadeInOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enterLeave", function() { return enterLeave; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flyInOut", function() { return flyInOut; });
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
+
+var fadeInOut = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('fadeInOut', [
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])(':enter', [
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0 }),
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('0.4s ease-in', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 1 }))
+    ]),
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])(':leave', [Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('0.4s 10ms ease-out', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0 }))])
+]);
+var enterLeave = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('enterLeave', [
+    // :ENTER TRANSITION
+    // Transition Styles
+    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('void => *', [
+        // 'From' styles
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({
+            opacity: 0.5,
+            transform: 'scale(0.8)'
+        }),
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])('550ms ease-out', 
+        // 'To' styles
+        // 1 - Comment this to remove the item's grow...
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({
+            opacity: 1,
+            transform: 'scale(1)'
+        }))
+    ])
+]);
+function flyInOut(duration) {
+    if (duration === void 0) { duration = 0.2; }
+    return Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["trigger"])('flyInOut', [
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["state"])('in', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 1, transform: 'translateX(0)' })),
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('void => *', [
+            Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0, transform: 'translateX(-100%)' }),
+            Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])(duration + "s ease-in")
+        ]),
+        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["transition"])('* => void', [
+            Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["animate"])(duration + "s 10ms ease-out", Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["style"])({ opacity: 0, transform: 'translateX(100%)' }))
+        ])
+    ]);
+}
+
+
+/***/ }),
+
 /***/ "./src/app/shared/services/api.service.ts":
 /*!************************************************!*\
   !*** ./src/app/shared/services/api.service.ts ***!
@@ -1393,10 +1745,10 @@ var ApiService = /** @class */ (function () {
         return this.http.get('/api/hackathons/' + String(id));
     };
     ApiService.prototype.createHackathon = function (data) {
-        return this.http.post('/api/hackathons', JSON.stringify(data), this.getHttpOptions(true));
+        return this.http.post('/api/hackathons', JSON.stringify(data), this.getHttpOptions(false));
     };
-    ApiService.prototype.updateHackathon = function (hackathon) {
-        return this.http.put('/api/hackathons/' + hackathon.id, JSON.stringify(hackathon), this.getHttpOptions(false));
+    ApiService.prototype.updateHackathon = function (id, data) {
+        return this.http.put('/api/hackathons/' + id, JSON.stringify(data), this.getHttpOptions(false));
     };
     ApiService.prototype.getAllChallenges = function () {
         return this.http.get('/api/challenges');
@@ -1432,17 +1784,78 @@ var ApiService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/services/custom-icon.service.ts":
+/*!********************************************************!*\
+  !*** ./src/app/shared/services/custom-icon.service.ts ***!
+  \********************************************************/
+/*! exports provided: CustomIconService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomIconService", function() { return CustomIconService; });
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CustomIconService = /** @class */ (function () {
+    function CustomIconService(matIconRegistry, domSanitizer) {
+        this.matIconRegistry = matIconRegistry;
+        this.domSanitizer = domSanitizer;
+    }
+    CustomIconService.prototype.init = function () {
+        // this.matIconRegistry.addSvgIcon(
+        //   "cool_face",
+        //   this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/cool2.svg")
+        // );
+        this.matIconRegistry.addSvgIcon('account', this.domSanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/account.svg'));
+        this.matIconRegistry.addSvgIcon('add-circle', this.domSanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/add-circle.svg'));
+        this.matIconRegistry.addSvgIcon('code', this.domSanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/code.svg'));
+        this.matIconRegistry.addSvgIcon('edit', this.domSanitizer.bypassSecurityTrustResourceUrl('./static/front-end/assets/img/svg/edit.svg'));
+        this.matIconRegistry.registerFontClassAlias('fa');
+    };
+    CustomIconService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_material_icon__WEBPACK_IMPORTED_MODULE_1__["MatIconRegistry"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["DomSanitizer"]])
+    ], CustomIconService);
+    return CustomIconService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/services/index.ts":
 /*!******************************************!*\
   !*** ./src/app/shared/services/index.ts ***!
   \******************************************/
-/*! exports provided: ApiService */
+/*! exports provided: fadeInOut, enterLeave, flyInOut, ApiService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api.service */ "./src/app/shared/services/api.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return _api_service__WEBPACK_IMPORTED_MODULE_0__["ApiService"]; });
+
+/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animations */ "./src/app/shared/services/animations.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fadeInOut", function() { return _animations__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "enterLeave", function() { return _animations__WEBPACK_IMPORTED_MODULE_1__["enterLeave"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "flyInOut", function() { return _animations__WEBPACK_IMPORTED_MODULE_1__["flyInOut"]; });
+
 
 
 
@@ -1641,18 +2054,21 @@ var environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(function (err) { return console.log(err); });
 
 

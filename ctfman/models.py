@@ -18,9 +18,10 @@ class Hackathon(models.Model):
         default=timezone.now
     )
     endDate = models.DateTimeField(
-        default=timezone.now
+        default=timezone.now,
+        null=True
     )
-    rating = models.IntegerField(default=1)
+    rating = models.IntegerField(blank=True, null=True)
     participants = models.ManyToManyField(User, blank=True)
     
 

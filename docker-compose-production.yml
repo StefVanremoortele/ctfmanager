@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - .db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=performer
+      - MYSQL_DATABASE=ctfmanagerDb
+    ports:
+      - "3306:3306"
+    networks:
+        webpage:
+            ipv4_address: 172.25.0.5
+    
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ctfman
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+        webpage:
+            ipv4_address: 172.25.0.6
+
+
+networks:
+  webpage:
+      ipam:
+        config:
+          - subnet: 172.25.0.0/16

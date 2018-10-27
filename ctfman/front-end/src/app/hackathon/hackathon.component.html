@@ -1,23 +1,28 @@
-<p>
-  hackathon works!
-</p>
-
-
-<div *ngIf="this.hackathon_list; else noHackathons">
+<div *ngIf="this.hackathon_list.length > 0; else noHackathons">
   <div class="col-sm-12">
     <div class="row mb-3">
-          <div class="col-md-2 mbhtml -1"><strong>Name</strong></div>
-          <div class="col-md-2 mb-1"><strong>Start</strong></div>
-          <div class="col-md-2 mb-1"><strong>End</strong></div>
-          <div class="col-md-2 mb-1"><strong>Rating</strong></div>
+      <div class="col-md-2 mb-1"><strong>Name</strong></div>
+      <div class="col-md-2 mb-1"><strong>Start</strong></div>
+      <div class="col-md-2 mb-1"><strong>End</strong></div>
+      <div class="col-md-2 mb-1"><strong>Rating</strong></div>
+      <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
+      <button mat-button  color="primary" (click)="openCreateDialog()">
+        <mat-icon svgIcon="add-circle"></mat-icon>
+        <!-- Add New -->
+      </button>
     </div>
-    <div *ngFor="let hackathon of hackathon_list">
+    <div *ngFor="let hackathon of hackathon_list" [@fadeInOut]>
       <div class="row mb-3">
         <div class="col-md-2 mb-1">{{ hackathon.name }}</div>
         <div class="col-md-2 mb-1">{{ hackathon.startDate | date:'d LLLL hh:mm' }}</div>
         <div class="col-md-2 mb-1">{{ hackathon.endDate | date:'d LLLL hh:mm' }}</div>
         <div class="col-md-2 mb-1">{{ hackathon.rating }}</div>
-        <app-hackathon-edit (modal_saved_action)="modal_saved_action($event)" [hackathon_id]="hackathon.id"></app-hackathon-edit>
+        <p>
+          <button mat-button color="primary" (click)="openEditDialog(hackathon)">
+            <mat-icon svgIcon="edit"></mat-icon>
+            <!-- Edit -->
+          </button>
+        </p>
       </div>
     </div>
   </div>
@@ -26,9 +31,8 @@
 <ng-template #noHackathons>
   <div class="col-sm-12">
     <div>
-      <p>No CTFs found</p>
+      <h3>No CTFs found</h3>
+      <button mat-flat-button color="primary" (click)="openCreateDialog()">Create New</button>
     </div>
   </div>
 </ng-template>
-
-<app-hackathon-create></app-hackathon-create>

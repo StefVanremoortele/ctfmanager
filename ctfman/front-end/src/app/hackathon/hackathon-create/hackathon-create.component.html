@@ -1,57 +1,60 @@
-<p>
-  hackathon-create works!
-</p>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Create new ctf</h4>
-    <button type="button" class="close" aria-label="Close" (click)="close('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="hackathonCreationForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
+<h1 matDialogTitle>Create hackathon</h1>
 
-        <label for="ctf-name">CTF name</label>
-        <div>
-          <input id="ctf-name" type="text" formControlName="name" name="hackathon_name" [ngClass]="{'is-invalid': submitted && f.name.errors}">
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Name is required</div>
-          </div>
-        </div>
-        <label for="ctf-type">type</label>
-        <div>
-          <input id="ctf-type" type="text" formControlName="type" name="hackathon_type" [ngClass]="{'is-invalid': f.type.errors}">
-          <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
-            <div *ngIf="f.type.errors.required">Type is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Create</button>
-        </div>
-        <!-- <label for="startDate">Start date</label>
-        <div class="input-group">
-          <input id="startDate" class="form-control" [(ngModel)]="startDate" (ngModelChange)="updateStartDate(startDate)" value="{{ hackathon?.startDate }}" placeholder="{{ hackathon?.stasrtDate }}" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="sdp.toggle()" type="button"></button>
-          </div>
-        </div>
-        <label for="endDate">End date</label>
-        <div class="input-group">
-          <input id="endDate" class="form-control" [(ngModel)]="endDate" (ngModelChange)="updateEndDate(endDate)" value="{{ hackathon?.endDate }}" placeholder="{{ hackathon?.endDate }}" name="edp" ngbDatepicker #edp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="edp.toggle()" type="button"></button>
-          </div>
-        </div> -->
-      </div>
-    </form>
-  </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div> -->
-</ng-template>
+<mat-dialog-content>
+  <form [formGroup]="hackathonCreationForm" (ngSubmit)="createHackathon(hackathonCreationForm.value)">
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create new CTF</button>
+    <div class="hackathon-creation-container">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf="!name.valid && name.touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput [matDatepicker]="startDate" placeholder="Start date" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput [matDatepicker]="endDate" placeholder="End date" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
 
 
-<pre>{{closeResult}}</pre>
+      <!-- <mat-form-field class="form-element">
+        <input matInput placeholder="Rating" formControlName="rating" type="number">
+        <mat-hint>Select a rating between 1 and 5</mat-hint>
+        <mat-error *ngIf="!hackathonCreationForm.controls['rating'].valid && hackathonCreationForm.controls['rating'].touched">
+          {{ getErrorRating() }}
+        </mat-error>
+      </mat-form-field> -->
+      
+      <!-- <mat-form-field>
+        <input matInput type="number" min=1 max=5 placeholder="Rating" formControlName="rating">
+      </mat-form-field> -->
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="createHackathon()" tabindex="1">Create</button>
+  <button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+</mat-dialog-actions>
+
+<p>{{this.errorMsg | json }}</p>
+
+
+<!-- material Input select pseudocode -->
+
+<!-- <mat-form-field>
+      <mat-select placeholder="Type" value="{{ this.hackathon.type }}">
+        <mat-option value="crypto">crypt</mat-option>
+        <mat-option value="misc">misc</mat-option>
+        <mat-option value="rev">rev</mat-option>
+        <mat-option value="web">web</mat-option>
+      </mat-select>
+    </mat-form-field>
+ -->

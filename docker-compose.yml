@@ -13,27 +13,9 @@ services:
     networks:
         webpage:
             ipv4_address: 172.25.0.5
-    
-
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: stefvanremoortele/ctfmanager
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    networks:
-        webpage:
-            ipv4_address: 172.25.0.6
-
 
 networks:
   webpage:
       ipam:
-        driver: default
         config:
-          - subnet: 172.25.0.0/24
+          - subnet: 172.25.0.0/16

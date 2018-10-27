@@ -2,7 +2,7 @@
 
   <!-- Logged out view -->
   <div *ngIf="!_userService.token">
-    <h2>Welcome to CTFMAN</h2>
+    <h2>Welcome to ctfman</h2>
     <h3>Please log in</h3>
     <div>
       <div class="col-sm-4">
@@ -39,12 +39,21 @@
   <!-- Logged in view -->
   <div *ngIf="_userService.token">
     <div class="float-right">Hi, {{ _userService.username }}.<br />
-      <button (click)="logout()" class="btn btn-primary pull-right">Log out</button>&nbsp;
+
+      <button mat-button color="primary" (click)="openAccount()" matTooltip="
+          under construction">
+        <mat-icon svgIcon="account"></mat-icon>
+        Account
+      </button>
+      <!-- <button (click)="logout()" class="btn btn-primary pull-right">Log out</button>&nbsp; -->
     </div>
     <div class="col-sm-10">
-      <nav>
+      <nav class='navigation'>
         <h3>Menu</h3>
         <ul>
+          <li><a routerLink="home">
+              <mat-icon>home</mat-icon>
+            </a></li>
           <li><a routerLink="hackathons">View hackathons</a></li>
           <li><a routerLink="challenges">View Challenges</a></li>
         </ul>

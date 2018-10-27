@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { UnauthorizedComponent, NotFoundComponent } from '.';
 import { ChallengesComponent } from "./challenges";
 import { HackathonComponent } from './hackathon/hackathon.component';
+import { HomeComponent } from './home';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'hackathons', component: HackathonComponent },
   { path: 'challenges', component: ChallengesComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },

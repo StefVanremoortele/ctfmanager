@@ -52,3 +52,23 @@ The database included in this repository contains two users. The following are t
 If you spot an error when trying to run the demo app, please file a bug in the GitHub issue tracker.
 
 Please do not create issues or email me asking for support for your own projects. I cannot provide support for your custom applications.
+
+
+
+
+Project description
+-------------------
+The goal of this project is to create a platform that serves as organizer for hackathons
+It's meant to serve for local groups, which can register hackathons they participate in together with the challenges
+
+Users can perform several actions: 
+    - join a team and register hackathons
+    - set the priority of a challenge from an active hackathon they participate in
+    - give challenges and hackathons a rating
+    - assign a priority rating to challenges
+    - request 'backup' for a certain task (challenge)
+    - give remarks to a hackathon or challenge.
+    - search through hackathons and challenges
+
+It should be possible to add a write-ups, using markdown syntax, and create a report in pdf
+ 

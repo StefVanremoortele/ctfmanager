@@ -37,7 +37,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class HackathonSerializer(serializers.ModelSerializer):
 
     # owner = serializers.ReadOnlyField(source='owner.username') # ADD THIS LINE
-    # challenges = serializers.RelatedField(many=True, read_only=True)
+    challenges = serializers.RelatedField(many=True, read_only=True)
 
     class Meta:
         model = Hackathon
@@ -45,12 +45,16 @@ class HackathonSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'startDate', 'endDate', 'challenges', 'participants', 'rating')
 
     def validate(self, data):
-        #  category = data['category']
-         rating = data['rating']
-         if not (1 <= rating <= 5):
-             raise serializers.ValidationError('Invalid rating. Should be 1-5')
+        try:
+            rating = data['rating']
+            if rating is not None:
+                val = int(rating)
+                if not (1 <= val <= 5):
+                    raise serializers.ValidationError('Invalid rating. Should be 1-5')
+        except KeyError:
+            data['rating'] = None
 
-         return data
+        return data
         # read_only_fields = ('startDate', 'endDate')
     # def _user(self, obj):
     #     request = getattr(self.context, 'request', None)

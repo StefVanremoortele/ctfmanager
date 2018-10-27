@@ -20,7 +20,11 @@ import { HackathonComponent } from './hackathon/hackathon.component';
 import { HackathonEditComponent } from './hackathon/hackathon-edit/hackathon-edit.component';
 import { HackathonCreateComponent } from './hackathon/hackathon-create/hackathon-create.component';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from "./material.module";
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CommonModule } from '@angular/common';
+import { CustomIconService } from './shared/services/custom-icon.service';
 
 @NgModule({
   declarations: [
@@ -29,13 +33,26 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     SizeSelectComponent,
     HackathonComponent,
     HackathonEditComponent,
-    HackathonCreateComponent
+    HackathonCreateComponent,
+    HomeComponent,
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule, LoggerModule.forRoot({ serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }), ToastModule.forRoot()],
-  providers: [BlogPostService, UserService, ApiService],
-  bootstrap: [AppComponent]
+    BrowserModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, CommonModule, HttpClientModule, CoreModule, SharedModule, RouterModule, AppRoutingModule, NgbModule, MaterialModule, LoggerModule.forRoot({ serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }), ToastModule.forRoot()],
+  exports: [HackathonEditComponent],
+  providers: [BlogPostService, UserService, ApiService, CustomIconService,
+  {
+    provide: MatDialogRef,
+  useValue: {
+    close: (dialogResult: any) => { }
+  }
+  }],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    HackathonEditComponent,
+    HackathonCreateComponent
+  ]
 })
+
 export class AppModule {
   constructor(private _appRef: ApplicationRef) { }
 

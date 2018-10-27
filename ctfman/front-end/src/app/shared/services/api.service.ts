@@ -27,12 +27,12 @@ export class ApiService {
   }
 
   createHackathon(data: any): Observable<any> {
-    return this.http.post('/api/hackathons', JSON.stringify(data), this.getHttpOptions(true));
+    return this.http.post('/api/hackathons', JSON.stringify(data), this.getHttpOptions(false));
   }
 
-  updateHackathon(hackathon: any): Observable<any> {
-    return this.http.put('/api/hackathons/' + hackathon.id,
-      JSON.stringify(hackathon), this.getHttpOptions(false));
+  updateHackathon(id: any, data: any): Observable<any> {
+    return this.http.put('/api/hackathons/' + id,
+      JSON.stringify(data), this.getHttpOptions(false));
   }
 
   getAllChallenges(): Observable<any> {

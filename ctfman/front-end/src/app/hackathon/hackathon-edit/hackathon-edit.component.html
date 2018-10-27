@@ -1,48 +1,66 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Edit ctf</h4>
-    <button type="button" class="close" aria-label="Close" (click)="close('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="hackathon-name">Hackathon name</label>
-        <div>
-          <input id="hackathon-name" type="text" [value]="hackathon?.name" (input)="updateValue($event)">
-        </div>
-        <label for="startDate">Start date</label>
-        <div class="input-group">
-          <input id="startDate" class="form-control" [(ngModel)]="startDate" value="{{ hackathon?.startDate }}"
-            (ngModelChange)="updateStartDate(startDate)" name="sdp" ngbDatepicker #sdp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="sdp.toggle()" type="button"></button>
-          </div>
-        </div> <label for="endDate">End date</label>
-        <div class="input-group">
-          <input id="endDate" class="form-control" [(ngModel)]="end_date" (ngModelChange)="updateEndDate(end_date)"
-            name="edp" ngbDatepicker #edp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="edp.toggle()" type="button"></button>
-          </div>
-        </div>
-      </div>
-      <label for="hackathon-rating">Rating</label>
-      <div>
-        <input id="hackathon-rating" type="text" [value]="hackathon?.rating" (input)="updateValue($event)">
+<h1 matDialogTitle>Edit hackathon</h1>
+
+<div *ngIf="!loading; else loadingTemplate">
+
+
+  <mat-dialog-content >
+    <form [formGroup]="hackathonEditForm" (ngSubmit)="createHackathon(hackathonCreationForm.value)">
+      <div class="hackathon-edit-container">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Name" formControlName="name">
+          <mat-error *ngIf="!name.valid && name.touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+      <mat-select placeholder="Type" value="{{ this.hackathon.type }}">
+        <mat-option value="crypto">crypt</mat-option>
+        <mat-option value="misc">misc</mat-option>
+        <mat-option value="rev">rev</mat-option>
+        <mat-option value="web">web</mat-option>
+      </mat-select>
+    </mat-form-field>>
+ -->
+        <mat-form-field class="form-element">
+          <input matInput [matDatepicker]="startDate" placeholder="Start date" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput [matDatepicker]="endDate" placeholder="End date" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput type="number" min=1 max=5 placeholder="Rating" formControlName="rating">
+          <mat-hint>Select a rating between 1 and 5</mat-hint>
+          <mat-error *ngIf="!hackathonEditForm.controls['rating'].valid && hackathonEditForm.controls['rating'].touched">
+            {{ getErrorRating() }}
+          </mat-error>
+        </mat-form-field>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="form-element">
+      <button mat-raised-button color="accent" type="submit" class="button" [disabled]="!hackathonEditForm.valid"
+        (click)="saveChanges()">Save changes</button>
+    </div>
+    <!-- <button mat-button (click)="saveChanges()" tabindex="1">Save</button> -->
+    <button mat-button mat-dialog-close tabindex="-1">Cancel</button>
+  </mat-dialog-actions>
+</div>
+
+
+
+<ng-template #loadingTemplate>
+  <div class="loading-spinner">
+    <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    <p>Saving changes ...</p>
   </div>
 </ng-template>
-
-<!-- ng toaster test -->
-<button (click)="popToast()">pop toast</button>
-
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit</button>
-
-
-<!-- <pre>{{closeResult}}</pre> -->

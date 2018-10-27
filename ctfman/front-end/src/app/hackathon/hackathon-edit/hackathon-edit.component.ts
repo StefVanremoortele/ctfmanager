@@ -1,105 +1,98 @@
-import { Component, ViewContainerRef, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../shared/services/';
 import { ToastsManager } from 'ng6-toastr/ng2-toastr';
 import { NGXLogger } from 'ngx-logger';
+import { VERSION, MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA } from "@angular/material";
+import { Hackathon } from '../../shared/models';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 
 @Component({
   selector: 'app-hackathon-edit',
   templateUrl: './hackathon-edit.component.html',
   styleUrls: ['./hackathon-edit.component.scss'],
-  providers: [NGXLogger]
+  providers: [NGXLogger],
 })
 
 export class HackathonEditComponent implements OnInit {
 
-  @Input() hackathon_id: any;
-  @Output() modal_saved_action = new EventEmitter<boolean>();
   hackathon: any;
-  closeResult: string;
+  hackathonEditForm: FormGroup;
+  errorMsg: any;
+  titleAlert: string = 'This field is required';
+  loading: boolean;
 
-  constructor(private modalService: NgbModal, private _apiService: ApiService, public toastr: ToastsManager, vcr: ViewContainerRef, private logger: NGXLogger) { 
-    // this.logger.debug('Your log message goes here');
-   }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private snackBar: MatSnackBar, private _apiService: ApiService, private logger: NGXLogger, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<HackathonEditComponent>) {
+
+  }
 
   ngOnInit(): void {
-    // this.load_hackathon(this.hackathon_id); 
+    this.loading = false;
+    this.hackathon = this.data.hackathon;
+
+
+
+    this.createForm();
+    this.setChangeValidate();
   }
 
-
-  popToast() {
-    this.toastr.error('success', 'Args Title');
+  createForm() {
+    this.hackathonEditForm = this.formBuilder.group({
+      name: [this.hackathon.name, Validators.required],
+      startDate: [this.hackathon.startDate, Validators.required],
+      endDate: [this.hackathon.endDate, Validators.required],
+      rating: [this.hackathon.rating, [Validators.min(1), Validators.max(5)]],
+      'validate': ''
+    })
   }
 
+  setChangeValidate() {
 
-  load_hackathon(hackathon_id) {
-    this._apiService.getHackathon(hackathon_id).subscribe(
+    this.hackathonEditForm.get('name').setValidators([Validators.required, Validators.minLength(3)]);
+    this.titleAlert = "You need to specify at least 3 characters";
+    // this.hackathonEditForm.get('name').setValidators(Validators.required);
+    this.hackathonEditForm.get('name').updateValueAndValidity();
+  }
+
+  getErrorRating() {
+    return this.hackathonEditForm.get('rating').hasError('required') ? 'Field is required' :
+      this.hackathonEditForm.get('rating').hasError('value') ? 'Not the right value' : 'Incorrect number';
+  }
+
+  get name() {
+    return this.hackathonEditForm.get('name') as FormControl
+  }
+  get f() { return this.hackathonEditForm.controls; }
+
+
+
+  saveChanges(): void {
+    this.loading = true;
+    this._apiService.updateHackathon(this.hackathon.id, this.hackathonEditForm.value).subscribe(
       data => {
-        this.hackathon = data;
-        // this.hackathon.startDate = new Date(data.startDate);
-        // this.hackathon.endDate = new Date(data.endDate);
+        console.log(data);
       },
       err => {
         console.log(err);
+        // TODO: Raise error
+        // prompt input validation
       },
       () => {
-        this.hackathon.startDate = new Date(this.hackathon.startDate);
-        this.hackathon.endDate = new Date(this.hackathon.endDate);
+        this.logger.log("Saved changes for hackathon #" + this.hackathon.id)
+        this.dialogRef.close(true);
       }
     )
+
   }
 
-  save_changes() {
-    this._apiService.updateHackathon(this.hackathon).subscribe(
-      data => {
-        this.modal_saved_action.emit(true);
-      },
-      err => {
-        this.logger.error("Bad request. Check parameters.");
-      }
-    )
+
+  private handleError(error: any) {
+    console.log("ERROR!!" + error.message);
+    this.errorMsg = error;
+    throwError(error.message || error);
   }
 
-  updateValue(e) {
-    let element_id = e.path[0].id;
-    if (element_id == "hackathon-name") {
-      this.hackathon.name = e.target.value;
-    }
-    if (element_id == "hackathon-rating") {
-      this.hackathon.rating = e.target.value;
-    }
-  }
-
-  updateStartDate(date) {
-    this.hackathon.startDate = new Date(date.year, date.month-1, date.day);
-  }
-
-  updateEndDate(date) {
-    this.hackathon.endDate = new Date(date.year, date.month-1, date.day);
-  }
-
-  open(content) {
-    this.load_hackathon(this.hackathon_id);
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      this.save_changes();
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  close(reason) {
-    this.modalService.dismissAll(reason);
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 }
